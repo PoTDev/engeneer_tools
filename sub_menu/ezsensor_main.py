@@ -40,8 +40,9 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
                 break
     else:
         layout = [[sg.Text("SN: "), sg.Multiline(default_text=str(get_ezsensorId()), auto_size_text=True, size=(30,1), disabled=True)],
-        [sg.Button('Диангостика', key='Diagn', pad=(5,5))], 
-        [sg.Button('Смена SN', key='change_id', pad=(5,1))],
+        [sg.Button('Диагностика', key='Diagn', pad=(5,2))], 
+        [sg.Button('Замена Calibration Data', key='change_id', pad=(5,2))],
+        [sg.Button('Cоздать флешку', key='change_id', pad=(5,2))],
         [sg.Button('Назад', key='Back', pad=(5,20))]]
 
         window = sg.Window("EzSensor", layout, modal=True)

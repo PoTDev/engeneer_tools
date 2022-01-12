@@ -30,8 +30,8 @@ def main():
 
     layout = [
         [sg.Button('EzSensor', key='open_ezsensor', size=(15,1), pad=(80,5))],
-        [sg.Button('EzDent', key='open_ezdent', size=(15,1), pad=(80,5))],
-        [sg.Button('Data Base', key='open_database', size=(15,1), pad=(80,5))],
+        #[sg.Button('EzDent', key='open_ezdent', size=(15,1), pad=(80,5))],
+        #[sg.Button('Data Base', key='open_database', size=(15,1), pad=(80,5))],
         [sg.Text(key='-OUTPUT-')],
         [sg.Button('Выйти', key='Exit')]
     ]
@@ -63,9 +63,9 @@ def main():
             else: 
                 window.UnHide()
     
-        if event == "open_ezdent":
-            print("2")
-        if event == "open_database":
-            print("3")
+        # if event == "open_ezdent":
+        #     print("2")
+        # if event == "open_database":
+        #     print("3")
 
     window.close()
