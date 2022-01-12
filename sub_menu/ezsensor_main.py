@@ -11,7 +11,7 @@ from PySimpleGUI.PySimpleGUI import theme_text_color
 
 from utils.change_serialId import change_serialId
 from utils.get_ezsensorid import get_ezsensorId
-
+from sub_menu.ontop_create import ontop_create
 
 
 #-------------EZSENSOR---------------#
@@ -41,8 +41,8 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
     else:
         layout = [[sg.Text("SN: "), sg.Multiline(default_text=str(get_ezsensorId()), auto_size_text=True, size=(30,1), disabled=True)],
         [sg.Button('Диагностика', key='Diagn', pad=(5,2))], 
-        [sg.Button('Замена Calibration Data', key='change_id', pad=(5,2))],
-        [sg.Button('Cоздать флешку', key='change_id', pad=(5,2))],
+        [sg.Button('Замена Calibration Data', key='change_cd', pad=(5,2))],
+        [sg.Button('Cоздать флешку', key='create_flash', pad=(5,2))],
         [sg.Button('Назад', key='Back', pad=(5,20))]]
 
         window = sg.Window("EzSensor", layout, modal=True)
@@ -54,9 +54,17 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
                 os.startfile(r"C:\EzSensor\_EzSensor")
                 continue
 
-            if event == 'change_id':
+            if event == 'change_cd':
                 change_serialId()
                 continue
+            
+            if event == "create_flash":
+                if ontop_create() == 'local':
+                    print('1')
+                elif ontop_create() == 'vcsm':
+                    print('2')
+
+
 
             if event == "Back":
                 window.close()
@@ -70,7 +78,5 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
                 need_to_close_main = True
                 break
 
-            if event == "Сохранить":
-                print('kek')
                 
     return(win_ezsensor, need_to_close_main)
