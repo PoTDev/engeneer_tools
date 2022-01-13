@@ -45,7 +45,7 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
         [sg.Button('Cоздать флешку', key='create_flash', pad=(5,2))],
         [sg.Button('Назад', key='Back', pad=(5,20))]]
 
-        window = sg.Window("EzSensor", layout, modal=True)
+        window = sg.Window("EzSensor", layout)
         choice = None
         while True:
             event, values = window.read()
@@ -55,14 +55,26 @@ def open_ezsensor(win_ezsensor, need_to_close_main):
                 continue
 
             if event == 'change_cd':
-                change_serialId()
-                continue
+                change_result = ontop_create()
+                if change_result == 'local':
+                    change_serialId()
+                    continue
+                elif change_result == 'vcsm':
+                    print('2')
+                    continue
+                elif change_result == 0:
+                    continue
             
             if event == "create_flash":
-                if ontop_create() == 'local':
+                ontop_result = ontop_create()
+                if ontop_result == 'local':
                     print('1')
-                elif ontop_create() == 'vcsm':
+                    continue
+                elif ontop_result == 'vcsm':
                     print('2')
+                    continue
+                elif ontop_result == 0:
+                    continue
 
 
 
